@@ -7,7 +7,7 @@ MyPrimaryGenerator::MyPrimaryGenerator() {
   G4ParticleDefinition* electron = G4ParticleTable::GetParticleTable()->FindParticle("e-");
 
   electronSource->SetParticleDefinition(electron);
-  electronSource->SetNumberOfParticles(100);
+  electronSource->SetNumberOfParticles(1E3);
 
   electronSource->GetPosDist()->SetPosDisType("Point"); // Point, Beam, Plane, Surface, Volume
   electronSource->GetPosDist()->SetCentreCoords(G4ThreeVector(0., 0., 2.8 * m));
@@ -19,7 +19,7 @@ MyPrimaryGenerator::MyPrimaryGenerator() {
   electronSource->GetAngDist()->SetMaxPhi(TMath::Pi() * 2.);
 
   electronSource->GetEneDist()->SetEnergyDisType("Mono"); // Mono, Lin, Pow, Exp, Gaus, Brem, BBody, Cdg (cosmic diffuse gamma), User, Arb, Epn (energy per nucleon)
-  electronSource->GetEneDist()->SetMonoEnergy(10 * GeV); 
+  electronSource->GetEneDist()->SetMonoEnergy(5 * GeV);
 }
 
 MyPrimaryGenerator::~MyPrimaryGenerator() { delete fGeneralParticleSource; }

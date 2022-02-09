@@ -17,6 +17,7 @@
 
 #include "TMath.h"
 #include "TString.h"
+#include "ROOT/RCsvDS.hxx"
 
 // #include "neutronsd.hh"
 
@@ -25,6 +26,12 @@ public:
   MyDetectorConstruction();
   ~MyDetectorConstruction();
 
+  void FillScintillatorFromFile(std::string spectrumFile);
+
   virtual G4VPhysicalVolume* Construct();
   virtual void ConstructSDandField();
+
+protected:
+    std::vector<G4double> fPhotonEnergyScintillator;
+    std::vector<G4double> fScintillatingAmplitudeScintillator;
 };

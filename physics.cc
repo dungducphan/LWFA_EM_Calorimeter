@@ -19,6 +19,16 @@ MyPhysicsList::MyPhysicsList()
   param->SetStepFunction(1., 1*CLHEP::mm);
   param->SetStepFunctionMuHad(1., 1*CLHEP::mm);
 
+  // Optical Physics
+  auto opticalPhysics = new G4OpticalPhysics();
+  auto opticalParams= G4OpticalParameters::Instance();
+  opticalParams->SetWLSTimeProfile("delta");
+  opticalParams->SetScintTrackSecondariesFirst(true);
+  opticalParams->SetCerenkovMaxPhotonsPerStep(1); // FIXME: Fake value for fast check. Use 100 for production.
+  opticalParams->SetCerenkovMaxBetaChange(10.0);
+  opticalParams->SetCerenkovTrackSecondariesFirst(true);
+  RegisterPhysics(opticalPhysics);
+
   // Decay
   RegisterPhysics(new G4DecayPhysics());
             
